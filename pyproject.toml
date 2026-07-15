@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scmoe"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "anndata",
+    "numpy",
+    "pandas",
+    "scanpy",
+    "scipy",
+    "torch",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["scMoE*"]
