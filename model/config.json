@@ -22,7 +22,7 @@
   "augment_feature_dropout": 0.1,
   "augment_noise_std": 0.03,
   "selection_specificity_weight": 0.25,
-  "temperature": 0.8311697840690613,
+  "temperature": 0.9420185685157776,
   "threshold": 0.5,
   "non_malignant_expert": 0,
   "malignant_expert": 1
