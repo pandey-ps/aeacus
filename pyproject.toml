@@ -3,7 +3,7 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "scmoe"
+name = "aeacus"
 version = "0.1.0"
 description = ""
 readme = "README.md"
@@ -19,4 +19,4 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["scMoE*"]
+include = ["aeacus*"]
