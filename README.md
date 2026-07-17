@@ -1,4 +1,4 @@
-The `scMoE/` folder contains inference code. The `model/` folder contains the trained weights and normalization artifacts.
+The `aeacus/` folder contains inference code. The `model/` folder contains the trained weights and normalization artifacts.
 
 ## Install
 
@@ -37,7 +37,7 @@ Do not z-score on new data. The model internally applies the training-set mean a
 For raw UMI count data:
 
 ```python
-from scMoE import Profiler
+from aeacus import Profiler
 
 profiler = Profiler(
     test_input="query.h5ad",
@@ -51,7 +51,7 @@ result_adata = profiler.load().profile()
 For TPM data:
 
 ```python
-from scMoE import Profiler
+from aeacus import Profiler
 
 result_adata = (
     Profiler(
@@ -67,7 +67,7 @@ result_adata = (
 For data already normalized:
 
 ```python
-from scMoE import Profiler
+from aeacus import Profiler
 
 result_adata = (
     Profiler(
@@ -104,7 +104,7 @@ View results:
 result_adata.obs["malignancy_call"].head()
 ```
 
-View all other scMoE output columns:
+View all other aeacus output columns:
 
 ```python
 prediction_cols = [
