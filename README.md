@@ -10,7 +10,7 @@ cd aeacus
 pip install -e .
 ```
 
-### Usage
+#### Usage
 
 ```python
 from aeacus import Profiler
@@ -19,7 +19,7 @@ result = Profiler(test_input="query.h5ad").load().profile()
 result.obs["malignancy_call"].value_counts()
 ```
 
-### Input
+#### Input
 
 | Format | Notes |
 |---|---|
@@ -28,7 +28,7 @@ result.obs["malignancy_call"].value_counts()
 | `.csv` | rows = genes, columns = cells |
 | `AnnData` object | passed directly |
 
-### Parameters
+#### Parameters
 
 | Parameter | Default | Description |
 |---|---|---|
@@ -39,7 +39,7 @@ result.obs["malignancy_call"].value_counts()
 | `batch_size` | `8192` | cells per batch, lower if out of memory |
 | `device` | auto | `"cuda"` or `"cpu"` |
 
-### `norm_type` 
+#### `norm_type` 
 
 model was trained on **CPM + log1p** normalized data, choose `norm_type` based on your input:
 
@@ -63,7 +63,7 @@ Profiler(test_input="tpm_data.h5ad", norm_type="tpm_log1p")
 ```
 
 
-### `use_raw`
+#### `use_raw`
 
 `use_raw` chooses which data slot to read from:
 
@@ -83,13 +83,13 @@ Profiler(
 )
 ```
 
-### Inference
+#### Inference
 
 ```python
 result = Profiler(test_input="data.h5ad", norm_type="cpm_log1p").load().profile()
 ```
 
-### Output
+#### Output
 
 all predictions are added to `result.obs`:
 
@@ -104,7 +104,7 @@ all predictions are added to `result.obs`:
 result.obs[["malignancy_call", "malignancy_score"]].head()
 ```
 
-### Note
+#### Note
 
 - **missing genes** are filled with zeros after aligning to `geneorder.tsv`; warning showed if >20% of model genes are missing.
 
