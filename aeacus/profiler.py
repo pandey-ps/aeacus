@@ -107,7 +107,6 @@ class Profiler:
 
         probs = []
         gates = []
-        expert_logits = []
 
         self.model.eval()
         n_cells = self.adata.n_obs
@@ -126,43 +125,22 @@ class Profiler:
                 x = zscore_batch(x, self.train_mean, self.train_std)
                 x_tensor = torch.from_numpy(x).to(self.device)
 
-                logits, gate_weights, batch_expert_logits = self.model(x_tensor)
+                logits, gate_weights, _ = self.model(x_tensor)
                 logits = logits / float(self.temperature)
                 probs.append(torch.sigmoid(logits).cpu().numpy().ravel())
                 gates.append(gate_weights.cpu().numpy())
-                expert_logits.append(batch_expert_logits.cpu().numpy())
 
         probs = np.concatenate(probs)
         gates = np.concatenate(gates, axis=0)
-        expert_logits = np.concatenate(expert_logits, axis=0)
         pred = probs >= float(self.threshold)
-        primary_expert = gates.argmax(axis=1).astype(int)
-        primary_expert_label = np.where(
-            primary_expert == self.malignant_expert,
-            "Malignant",
-            "Normal",
-        )
 
         self.adata.obs["malignancy_call"] = pd.Categorical(
             np.where(pred, "Malignant", "Normal"),
             categories=["Normal", "Malignant"],
         )
         self.adata.obs["malignancy_score"] = probs
-        self.adata.obs["primary_expert"] = primary_expert
-        self.adata.obs["primary_expert_label"] = pd.Categorical(
-            primary_expert_label,
-            categories=["Normal", "Malignant"],
-        )
-        self.adata.obs["gate_entropy"] = -np.sum(
-            gates * np.log(np.clip(gates, 1e-8, 1.0)),
-            axis=1,
-        )
         self.adata.obs["normal_expert_weight"] = gates[:, self.non_malignant_expert]
         self.adata.obs["malignant_expert_weight"] = gates[:, self.malignant_expert]
-        self.adata.obs["expert_weight_0"] = gates[:, 0]
-        self.adata.obs["expert_weight_1"] = gates[:, 1]
-        self.adata.obs["normal_expert_logit"] = expert_logits[:, self.non_malignant_expert]
-        self.adata.obs["malignant_expert_logit"] = expert_logits[:, self.malignant_expert]
 
         return self.adata
 
