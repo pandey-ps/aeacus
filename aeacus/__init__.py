@@ -3,5 +3,5 @@ from .profiler import Profiler
 
 aeacus = Profiler
 
-__all__ = ["Profiler", "aeacus", "MoE"]
-__version__ = "0.1.0"
+__all__ = ["Profiler", "aeacus"]
+__version__ = "0.5.0"
