@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aeacus"
-version = "0.1.0"
+version = "0.2.0"
 description = "mixture of experts single cell malignancy classifier"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -21,3 +21,6 @@ dependencies = [
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["aeacus*"]
+
+[tool.setuptools.package-data]
+aeacus = ["model/*"]
