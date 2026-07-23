@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "aeacus"
 version = "0.6.0"
-description = "mixture of experts single cell malignancy classifier"
+description = "single cell malignancy profiling through mixture of experts."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
