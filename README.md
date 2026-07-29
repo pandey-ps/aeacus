@@ -1,4 +1,4 @@
-[![PyPI Downloads](https://static.pepy.tech/personalized-badge/aeacus?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/aeacus)
+[![PyPI Downloads](https://static.pepy.tech/personalized-badge/aeacus?period=total&units=INTERNATIONAL_SYSTEM&left_color=GREY&right_color=RED&left_text=downloads)](https://pepy.tech/projects/aeacus)
 
 ```bash
 pip install aeacus
